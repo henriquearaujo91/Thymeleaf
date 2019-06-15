@@ -32,7 +32,7 @@
 							<td th:text="${post.titulo}"></td>
 							<td th:text="${#dates.format(post.data, 'dd/MM/yyyy')}"></td>
 							<td>
-								<div class="btn-group pull-right">
+								<div class="container-fluid">
 									<form th:action="@{/delete/{id}(id=${post.id})}" th:method="delete">
 									
 									<a class="btn btn-sm btn-primary" th:href="@{/findOne/{id}(id=${post.id})}">Editar</a>
@@ -50,5 +50,17 @@
 			<a class="btn btn-sm btn-success" th:href="@{/add/}" >Adicionar</a>
 		</div>
 	</div>
+
+	<div class="container-fluid">
+		<form th:action="@{/save}" method="POST">
+			<select class="form-control" name="post">
+				<option value="0">Posts</option>
+				<option th:each="post : ${posts}" th:value="${{post}}"
+					th:text="${post.autor}"></option>
+			</select>
+			<button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+		</form>
+	</div>
+
 </body>
 </html>
